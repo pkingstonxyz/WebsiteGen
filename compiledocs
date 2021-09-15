@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Format documents, generate html, and add pages to an index file
+for document in *.md
+do
+	html=$(echo $document | sed 's/.md//').html
+	sed 's/#/##/' $document > tmp$document
+	pandoc --template /home/Projects/pkingston/blog/templates/page.temp.html -o $html tmp$document
+	rm tmp$document
+done
